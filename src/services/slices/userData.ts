@@ -78,12 +78,8 @@ export const userSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(getUserData.fulfilled, (state, action) => {
-        state.userData = state.isAuthorized
-          ? action.payload.user
-          : {
-              email: '',
-              name: ''
-            };
+        state.isAuthorized = true;
+        state.userData = action.payload.user;
       })
       .addCase(updateUser.rejected, (state, action) => {
         state.isAuthorized = true;

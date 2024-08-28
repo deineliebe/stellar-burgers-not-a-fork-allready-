@@ -28,7 +28,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getIngredientsList());
-    if (isAuthorized) dispatch(getUserData());
+    if (!isAuthorized) dispatch(getUserData());
   }, []);
 
   return (
