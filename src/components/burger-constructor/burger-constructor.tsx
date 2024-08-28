@@ -5,14 +5,13 @@ import {
   getComponents,
   resetConstructorState
 } from '../../services/slices/burgerConstructor';
-import { useSelector } from 'react-redux';
 import {
   createOrder,
   getOrder,
   getOrderRequest,
   resetOrder
 } from '../../services/slices/order';
-import { useDispatch } from '../../services/store';
+import { useDispatch, useSelector } from '../../services/store';
 import { getIsAuthorized } from '../../services/slices/userData';
 import { useNavigate } from 'react-router-dom';
 

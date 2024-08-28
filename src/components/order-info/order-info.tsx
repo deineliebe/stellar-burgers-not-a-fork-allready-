@@ -4,8 +4,8 @@ import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient, TOrder } from '@utils-types';
 import { getOrderByNumberApi } from '@api';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { getIngredients } from '../../services/slices/ingredients';
+import { useSelector } from '../../services/store';
 
 export const OrderInfo: FC = () => {
   const [orderData, setOrderData] = useState<TOrder>({
