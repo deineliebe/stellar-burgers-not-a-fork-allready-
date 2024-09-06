@@ -2,10 +2,9 @@
  * For a detailed explanation regarding each configuration property, visit:
  * https://jestjs.io/docs/configuration
  */
+import type { JestConfigWithTsJest } from 'ts-jest';
 
-import type {Config} from 'jest';
-
-const config: Config = {
+const config: JestConfigWithTsJest = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -13,7 +12,7 @@ const config: Config = {
   // bail: 0,
 
   // The directory where Jest should store its cached dependency information
-  // cacheDirectory: "C:\\Users\\Julia\\AppData\\Local\\Temp\\jest",
+  // cacheDirectory: "/tmp/jest_rs",
 
   // Automatically clear mock calls, instances, contexts and results before every test
   // clearMocks: false,
@@ -25,15 +24,15 @@ const config: Config = {
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: 'coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
-  //   "\\\\node_modules\\\\"
+  //   "/node_modules/"
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: "v8",
+  coverageProvider: 'v8',
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -102,7 +101,7 @@ const config: Config = {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  // preset: undefined,
+  preset: 'ts-jest',
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -118,6 +117,16 @@ const config: Config = {
 
   // A path to a custom resolver
   // resolver: undefined,
+  // alias: {
+  //   '@pages': path.resolve(__dirname, './src/pages'),
+  //   '@components': path.resolve(__dirname, './src/components'),
+  //   '@ui': path.resolve(__dirname, './src/components/ui'),
+  //   '@ui-pages': path.resolve(__dirname, './src/components/ui/pages'),
+  //   '@utils-types': path.resolve(__dirname, './src/utils/types'),
+  //   '@api': path.resolve(__dirname, './src/utils/burger-api.ts'),
+  //   '@slices': path.resolve(__dirname, './src/services/slices'),
+  //   '@selectors': path.resolve(__dirname, './src/services/selectors')
+  // }
 
   // Automatically restore mock state and implementation before every test
   // restoreMocks: false,
@@ -147,6 +156,7 @@ const config: Config = {
 
   // The test environment that will be used for testing
   // testEnvironment: "jest-environment-node",
+  testEnvironment: 'jsdom',
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -162,7 +172,7 @@ const config: Config = {
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [
-  //   "\\\\node_modules\\\\"
+  //   "/node_modules/"
   // ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
@@ -175,12 +185,21 @@ const config: Config = {
   // testRunner: "jest-circus/runner",
 
   // A map from regular expressions to paths to transformers
-  // transform: undefined,
+  transform: {
+    // '^.+\\.[tj]sx?$' для обработки файлов js/ts с помощью `ts-jest`
+    // '^.+\\.m?[tj]sx?$' для обработки файлов js/ts/mjs/mts с помощью `ts-jest`
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        // настройки для ts-jest
+      }
+    ]
+  }
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
-  //   "\\\\node_modules\\\\",
-  //   "\\.pnp\\.[^\\\\]+$"
+  //   "/node_modules/",
+  //   "\\.pnp\\.[^\\/]+$"
   // ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
@@ -194,16 +213,19 @@ const config: Config = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
-  
-  transform: {
-    // '^.+\\.[tj]sx?$' для обработки файлов js/ts с помощью `ts-jest`
-    // '^.+\\.m?[tj]sx?$' для обработки файлов js/ts/mjs/mts с помощью `ts-jest`
-    '^.+\\.tsx?$': [
-      'ts-jest',
-      {
-        // настройки для ts-jest
-      },
-    ],
+};
+
+module.exports = {
+  moduleNameMapper: {
+    '@pages': '<rootDir>/src/pages',
+    '@components': '<rootDir>/src/components',
+    '@ui': '<rootDir>/src/components/ui',
+    '@ui-pages': '<rootDir>/src/components/ui/pages',
+    '@utils-types': '<rootDir>/src/utils/types',
+    '@api': '<rootDir>/src/utils/burger-api.ts',
+    '@slices': '<rootDir>/src/services/slices',
+    '@selectors': '<rootDir>/src/services/selectors',
+    '^@/(.*)$': '<rootDir>/src/$1'
   }
 };
 

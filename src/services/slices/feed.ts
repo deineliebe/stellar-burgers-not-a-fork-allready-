@@ -6,7 +6,7 @@ export const getFeedsInfo = createAsyncThunk('orders/all', async () =>
   getFeedsApi()
 );
 
-type TFeedsState = {
+export type TFeedsState = {
   orders: Array<TOrder>;
   total: number;
   totalToday: number;

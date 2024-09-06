@@ -61,7 +61,7 @@ export type TIngredientsResponse = TServerResponse<{
   data: TIngredient[];
 }>;
 
-type TFeedsResponse = TServerResponse<{
+export type TFeedsResponse = TServerResponse<{
   orders: TOrder[];
   total: number;
   totalToday: number;
@@ -242,4 +242,8 @@ export const startSession = (auth: TAuthResponse) => {
 export const stopSession = () => {
   deleteCookie('accessToken');
   localStorage.removeItem('refreshToken');
+};
+
+export const api = {
+  getFeedsApi
 };
