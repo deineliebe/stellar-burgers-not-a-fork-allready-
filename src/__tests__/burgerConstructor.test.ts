@@ -6,7 +6,8 @@ import {
   TConstructorState,
   replaceIngredientHigher,
   replaceIngredientLower,
-  resetConstructorState
+  resetConstructorState,
+  getComponents
 } from '../services/slices/burgerConstructor';
 import { afterAll, beforeEach, expect, test, jest } from '@jest/globals';
 
@@ -114,17 +115,17 @@ const initialIngredientsStateWithManyIngredients: TConstructorState = {
 jest.mock('uuid', () => ({ v4: () => '42' }));
 
 describe('[Burger Constructor Reducer] Проверка работы сборки заказа', () => {
-  let store: any;
-
-  beforeEach(() => {
-    store = configureStore({
+  test('[getComponents] Проверка селектора для конструктора', async () => {
+    const store = configureStore({
       reducer: {
-        constructorIngredient: burgerConstructorSlice.reducer
+        burgerConstructor: burgerConstructorSlice.reducer
       },
       preloadedState: {
-        constructorIngredient: initialIngredientsStateWithoutBun
+        burgerConstructor: initialIngredientsStateWithoutBun
       }
     });
+    const components = getComponents(store.getState());
+    expect(components).toEqual(initialIngredientsStateWithoutBun);
   });
 
   test('[addIngredient] Добавление ингредиента', () => {

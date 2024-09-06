@@ -7,55 +7,8 @@ import {
   getFeedsInfo,
   TFeedsState
 } from '../services/slices/feed';
-import { TFeedsResponse, api } from '../utils/burger-api';
+import { TFeedsResponse } from '../utils/burger-api';
 import { afterAll, beforeEach, expect, test, jest } from '@jest/globals';
-
-const mockFeedState: TFeedsResponse = {
-  success: true,
-  orders: [
-    {
-      _id: '66d9e491119d45001b5047a0',
-      ingredients: [
-        '643d69a5c3f7b9001cfa093c',
-        '643d69a5c3f7b9001cfa0941',
-        '643d69a5c3f7b9001cfa0946'
-      ],
-      status: 'done',
-      name: 'Краторный минеральный био-марсианский бургер',
-      createdAt: '2024-09-05T17:04:17.386Z',
-      updatedAt: '2024-09-05T17:04:18.457Z',
-      number: 52016
-    },
-    {
-      _id: '66d9e491119d45001b50479f',
-      ingredients: [
-        '643d69a5c3f7b9001cfa093c',
-        '643d69a5c3f7b9001cfa0941',
-        '643d69a5c3f7b9001cfa0946'
-      ],
-      status: 'done',
-      name: 'Краторный минеральный био-марсианский бургер',
-      createdAt: '2024-09-05T17:04:17.356Z',
-      updatedAt: '2024-09-05T17:04:18.360Z',
-      number: 52015
-    },
-    {
-      _id: '66d9e487119d45001b50479e',
-      ingredients: [
-        '643d69a5c3f7b9001cfa093c',
-        '643d69a5c3f7b9001cfa0941',
-        '643d69a5c3f7b9001cfa0946'
-      ],
-      status: 'done',
-      name: 'Краторный минеральный био-марсианский бургер',
-      createdAt: '2024-09-05T17:04:07.077Z',
-      updatedAt: '2024-09-05T17:04:08.088Z',
-      number: 52014
-    }
-  ],
-  total: 51642,
-  totalToday: 49
-};
 
 const expectedFeedState: TFeedsState = {
   orders: [
@@ -105,6 +58,13 @@ const expectedFeedState: TFeedsState = {
   error: null
 };
 
+const mockFeedState: TFeedsResponse = {
+  success: true,
+  orders: expectedFeedState.orders,
+  total: 51642,
+  totalToday: 49
+};
+
 const initialFeedState = {
   orders: [],
   total: 0,
@@ -147,7 +107,7 @@ describe('[Feed Reducer] Проверка работы ленты заказов
   });
 
   test('[getFeedsInfo: rejected] Проверка получения информации о заказах с сервера', async () => {
-    const messageText = 'Test error: a message for a check';
+    const messageText = 'Test error: the message for a check';
     const feedState = feedsSlice.reducer(initialFeedState, {
       type: getFeedsInfo.rejected.type,
       payload: {

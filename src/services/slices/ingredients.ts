@@ -6,7 +6,7 @@ export const getIngredientsList = createAsyncThunk('ingredients', async () =>
   getIngredientsApi()
 );
 
-type TIngredientsState = {
+export type TIngredientsState = {
   ingredients: Array<TIngredient>;
   loading: boolean;
   error: string | null | undefined;
@@ -39,6 +39,7 @@ export const ingredientsSlice = createSlice({
       })
       .addCase(getIngredientsList.fulfilled, (state, action) => {
         state.loading = false;
+        console.log(action.payload);
         state.ingredients = action.payload;
       });
   }
