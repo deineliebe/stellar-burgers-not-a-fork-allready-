@@ -7,13 +7,13 @@ export const getUsersOrders = createAsyncThunk(
   getOrdersApi
 );
 
-type TOrderState = {
+export type TOrderState = {
   orders: Array<TOrder>;
   loading: boolean;
   error: string | null | undefined;
 };
 
-const initialState: TOrderState = {
+export const initialProfileOrdersState: TOrderState = {
   orders: [],
   loading: true,
   error: null
@@ -21,7 +21,7 @@ const initialState: TOrderState = {
 
 export const profileOrdersSlice = createSlice({
   name: 'profileOrders',
-  initialState,
+  initialState: initialProfileOrdersState,
   reducers: {},
   selectors: {
     getOrders: (state) => state.orders

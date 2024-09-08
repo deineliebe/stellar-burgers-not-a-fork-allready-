@@ -4,7 +4,7 @@ import {
   getIngredientsLoadingState,
   getIngredients,
   getIngredientsList,
-  TIngredientsState
+  initialIngredientsState
 } from '../services/slices/ingredients';
 import { afterAll, beforeEach, expect, test, jest } from '@jest/globals';
 import { TIngredientsResponse } from '@api';
@@ -68,24 +68,20 @@ const mockIngredientsState: TIngredientsResponse = {
   data: expectedIngredientsState.ingredients.data
 };
 
-const initialIngredientsState: TIngredientsState = {
-  ingredients: [],
-  loading: false,
-  error: null
-};
-
 describe('[Ingredients Reducer] Проверка доступа к ингредиентам', () => {
   let store: any;
 
   beforeEach(() => {
     store = configureStore({
-      reducer: { ingredients: ingredientsSlice.reducer},
-      preloadedState: { ingredients: {
-        ingredients: expectedIngredientsState.ingredients.data,
-        loading: false,
-        error: null
+      reducer: { ingredients: ingredientsSlice.reducer },
+      preloadedState: {
+        ingredients: {
+          ingredients: expectedIngredientsState.ingredients.data,
+          loading: false,
+          error: null
+        }
       }
-    }});
+    });
   });
 
   test('[getIngredientsLoadingState] Проверка селектора для loading', async () => {

@@ -5,7 +5,8 @@ import {
   getTotalFeeds,
   getTotalTodayFeeds,
   getFeedsInfo,
-  TFeedsState
+  TFeedsState,
+  initialFeedState
 } from '../services/slices/feed';
 import { TFeedsResponse } from '../utils/burger-api';
 import { afterAll, beforeEach, expect, test, jest } from '@jest/globals';
@@ -63,14 +64,6 @@ const mockFeedState: TFeedsResponse = {
   orders: expectedFeedState.orders,
   total: 51642,
   totalToday: 49
-};
-
-const initialFeedState = {
-  orders: [],
-  total: 0,
-  totalToday: 0,
-  loading: false,
-  error: null
 };
 
 describe('[Feed Reducer] Проверка работы ленты заказов', () => {

@@ -13,7 +13,7 @@ export type TOrderState = {
   error: string | null | undefined;
 };
 
-const initialState: TOrderState = {
+export const initialOrderState: TOrderState = {
   orderRequest: false,
   order: null,
   error: null
@@ -21,9 +21,9 @@ const initialState: TOrderState = {
 
 export const orderSlice = createSlice({
   name: 'order',
-  initialState,
+  initialState: initialOrderState,
   reducers: {
-    resetOrder: (state) => initialState
+    resetOrder: (state) => initialOrderState
   },
   selectors: {
     getOrderRequest: (state) => state.orderRequest,

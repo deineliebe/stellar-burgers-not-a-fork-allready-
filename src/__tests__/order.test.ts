@@ -5,25 +5,26 @@ import {
   createOrder,
   getOrder,
   getOrderRequest,
+  initialOrderState,
   orderSlice,
   resetOrder
 } from '../services/slices/order';
-import { TNewOrderResponse, TOrderResponse } from '@api';
+import { TNewOrderResponse } from '@api';
 import { TOrder } from '@utils-types';
 
 const newOrder: TOrder = {
-    _id: '66d9e491119d45001b5047a0',
-    ingredients: [
-      '643d69a5c3f7b9001cfa093c',
-      '643d69a5c3f7b9001cfa0941',
-      '643d69a5c3f7b9001cfa0946'
-    ],
-    status: 'done',
-    name: 'Краторный минеральный био-марсианский бургер',
-    createdAt: '2024-09-05T17:04:17.386Z',
-    updatedAt: '2024-09-05T17:04:18.457Z',
-    number: 52016
-  }
+  _id: '66d9e491119d45001b5047a0',
+  ingredients: [
+    '643d69a5c3f7b9001cfa093c',
+    '643d69a5c3f7b9001cfa0941',
+    '643d69a5c3f7b9001cfa0946'
+  ],
+  status: 'done',
+  name: 'Краторный минеральный био-марсианский бургер',
+  createdAt: '2024-09-05T17:04:17.386Z',
+  updatedAt: '2024-09-05T17:04:18.457Z',
+  number: 52016
+};
 
 const expectedOrderState: TOrderState = {
   orderRequest: false,
@@ -35,12 +36,6 @@ const mockOrderState: TNewOrderResponse = {
   success: true,
   order: newOrder,
   name: newOrder.name
-};
-
-const initialOrderState: TOrderState = {
-  orderRequest: false,
-  order: null,
-  error: null
 };
 
 describe('[Order Reducer] Проверка работы сборки заказа', () => {

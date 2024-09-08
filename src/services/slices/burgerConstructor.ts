@@ -7,14 +7,14 @@ export type TConstructorState = {
   ingredients: Array<TConstructorIngredient>;
 };
 
-const initialState: TConstructorState = {
+export const initialBurgerConstructorState: TConstructorState = {
   bun: null,
   ingredients: []
 };
 
 export const burgerConstructorSlice = createSlice({
   name: 'burgerConstructor',
-  initialState,
+  initialState: initialBurgerConstructorState,
   reducers: {
     addIngredient: {
       reducer: (state, action: PayloadAction<TConstructorIngredient>) => {
