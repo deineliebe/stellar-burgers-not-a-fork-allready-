@@ -7,13 +7,13 @@ export const createOrder = createAsyncThunk(
   orderBurgerApi
 );
 
-type TOrderState = {
+export type TOrderState = {
   orderRequest: boolean;
   order: TOrder | null;
   error: string | null | undefined;
 };
 
-const initialState: TOrderState = {
+export const initialOrderState: TOrderState = {
   orderRequest: false,
   order: null,
   error: null
@@ -21,9 +21,9 @@ const initialState: TOrderState = {
 
 export const orderSlice = createSlice({
   name: 'order',
-  initialState,
+  initialState: initialOrderState,
   reducers: {
-    resetOrder: (state) => initialState
+    resetOrder: (state) => initialOrderState
   },
   selectors: {
     getOrderRequest: (state) => state.orderRequest,

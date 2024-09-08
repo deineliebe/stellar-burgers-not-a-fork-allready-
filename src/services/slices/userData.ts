@@ -34,13 +34,13 @@ export const logout = createAsyncThunk('user/logout', () =>
   logoutApi().then(() => stopSession())
 );
 
-type TUserState = {
+export type TUserState = {
   isAuthorized: boolean;
   userData: TUser;
   error: string | null | undefined;
 };
 
-const initialState: TUserState = {
+export const initialUserState: TUserState = {
   isAuthorized: false,
   userData: {
     email: '',
@@ -51,7 +51,7 @@ const initialState: TUserState = {
 
 export const userSlice = createSlice({
   name: 'user',
-  initialState,
+  initialState: initialUserState,
   reducers: {},
   selectors: {
     getIsAuthorized: (state) => state.isAuthorized,
