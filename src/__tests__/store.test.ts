@@ -8,7 +8,7 @@ import { initialProfileOrdersState } from '../services/slices/profileOrders';
 import { initialIngredientsState } from '../services/slices/ingredients';
 
 describe('[Root Reducer] Проверка корневого редьюсера', () => {
-  test('[State check]', () => {
+  test('[State check] Проверка инициализации корневого редьюсера', () => {
     expect(store.getState()).toEqual({
       burgerConstructor: initialBurgerConstructorState,
       ingredients: initialIngredientsState,
@@ -19,7 +19,7 @@ describe('[Root Reducer] Проверка корневого редьюсера'
     });
   });
 
-  test('[Wrong action]', () => {
+  test('[Wrong action] Проверка инициализации корневого редьюсера при некорректном экшне', () => {
     const initialStoreState = store.getState();
     store.dispatch({ type: 'UNKNOWN_ACTION' });
     expect(store.getState()).toEqual(initialStoreState);

@@ -39,7 +39,6 @@ export const ingredientsSlice = createSlice({
       })
       .addCase(getIngredientsList.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload);
         state.ingredients = action.payload;
       });
   }
