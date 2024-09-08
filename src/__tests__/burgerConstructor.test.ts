@@ -9,7 +9,7 @@ import {
   resetConstructorState,
   getComponents
 } from '../services/slices/burgerConstructor';
-import { afterAll, beforeEach, expect, test, jest } from '@jest/globals';
+import { afterAll, expect, test, jest } from '@jest/globals';
 
 const initialIngredientsStateWithBun: TConstructorState = {
   bun: {

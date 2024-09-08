@@ -79,13 +79,13 @@ describe('[Ingredients Reducer] Проверка доступа к ингред�
 
   beforeEach(() => {
     store = configureStore({
-      reducer: ingredientsSlice.reducer,
-      preloadedState: {
+      reducer: { ingredients: ingredientsSlice.reducer},
+      preloadedState: { ingredients: {
         ingredients: expectedIngredientsState.ingredients.data,
         loading: false,
         error: null
       }
-    });
+    }});
   });
 
   test('[getIngredientsLoadingState] Проверка селектора для loading', async () => {
